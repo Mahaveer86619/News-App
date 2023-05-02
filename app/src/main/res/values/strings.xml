@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">News App</string>
+    <string name="Dummy_text">Demo text h ye isko asli mat samaj lena.</string>
+    <string name="news_img">news_img</string>
 </resources>
