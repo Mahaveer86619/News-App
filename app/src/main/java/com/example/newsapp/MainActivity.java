@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 
+import com.example.newsapp.Adapter.NewsItemClicked;
 import com.example.newsapp.Adapter.RecyclerViewNewsModel;
 import com.example.newsapp.Adapter.RecyclerView_adapter;
 
@@ -33,7 +34,12 @@ public class MainActivity extends AppCompatActivity {
         newsModels.add(new RecyclerViewNewsModel(R.drawable.ic_launcher_background, "f"));
         newsModels.add(new RecyclerViewNewsModel(R.drawable.ic_launcher_background, "g"));
 
-        RecyclerView_adapter adapter = new RecyclerView_adapter(this, newsModels);
+        RecyclerView_adapter adapter = new RecyclerView_adapter(this, newsModel, new NewsItemClicked() {
+            @Override
+            public void onItemClicked(String item) {
+
+            }
+        });
         recyclerView.setAdapter(adapter);
 
 

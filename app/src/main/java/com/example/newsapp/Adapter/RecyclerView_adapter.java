@@ -16,12 +16,14 @@ import java.util.ArrayList;
 
 public class RecyclerView_adapter extends RecyclerView.Adapter<RecyclerView_adapter.ViewHolder> {
 
-    Context context;
+    private Context context;
+    private NewsItemClicked listner;
     ArrayList<RecyclerViewNewsModel> arrnews;
 
-    public RecyclerView_adapter (Context context, ArrayList<RecyclerViewNewsModel> arrNews) {
+    public RecyclerView_adapter (Context context, ArrayList<RecyclerViewNewsModel> arrNews, NewsItemClicked listner) {
         this.context = context;
         this.arrnews = arrNews;
+        this.listner = listner;
     }
 
     @NonNull
@@ -29,6 +31,7 @@ public class RecyclerView_adapter extends RecyclerView.Adapter<RecyclerView_adap
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.item_news, parent, false);
         ViewHolder viewHolder = new ViewHolder(view);
+
         return viewHolder;
     }
 
@@ -36,6 +39,10 @@ public class RecyclerView_adapter extends RecyclerView.Adapter<RecyclerView_adap
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.news_title.setText(arrnews.get(position).title);
         holder.news_img.setImageResource(arrnews.get(position).img);
+
+        holder.itemView.setOnClickListener(view -> {
+            listner.onItemClicked(String.valueOf(arrnews.get(position)));
+        });
     }
 
     @Override
