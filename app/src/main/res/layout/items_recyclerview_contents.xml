@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:elevation="20dp"
+    android:backgroundTint="@color/card_bg"
+    app:cardCornerRadius="10dp"
+    android:layout_marginBottom="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="20dp">
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="29 / 20 / 21"
+            android:textColor="@color/text_white"
+            android:gravity="end"
+            android:paddingBottom="10dp"/>
+        <ImageView
+            android:id="@+id/iv_item_image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="200dp"
+            tools:src="@mipmap/ic_launcher"
+            android:scaleType="centerCrop"
+            android:contentDescription="@string/news_image" />
+        <TextView
+            android:id="@+id/tv_item_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Demo title for a news.."
+            android:textColor="@color/text_white"
+            android:textSize="18sp"
+            android:paddingTop="20dp"
+            android:paddingBottom="5dp"
+            android:fontFamily="@font/poppins"/>
+        <TextView
+            android:id="@+id/tv_item_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Demo title for a news."
+            android:textColor="@color/text_white"
+            android:textSize="12sp"
+            android:paddingTop="10dp"
+            android:paddingBottom="5dp"
+            android:fontFamily="@font/poppins"/>
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
