@@ -5,11 +5,11 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.volley.Request
-import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.sev7en.newsapp.Adapters.ContentRecyclerViewAdapter
 import com.sev7en.newsapp.Adapters.DataModelContent
@@ -21,18 +21,21 @@ import com.sev7en.newsapp.databinding.ActivityHomeScreenBinding
 class HomeScreen : AppCompatActivity(), ItemClicked {
 
     private lateinit var binding : ActivityHomeScreenBinding
-    private lateinit var madapter: ContentRecyclerViewAdapter
+    private lateinit var madapterContent: ContentRecyclerViewAdapter
     val apikey = "cbf82fbfdf90ffdb363b9a4bc7a5364e"
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        fetchdata("https://gnews.io/api/v4/top-headlines?category=general&lang=en&country=in&max=10&apikey=$apikey")
+
 
         binding.rvContent.layoutManager = LinearLayoutManager(this)
-        fetchdata("https://gnews.io/api/v4/top-headlines?category=general&lang=en&country=in&max=10&apikey=$apikey")
-        madapter = ContentRecyclerViewAdapter(this)
-        binding.rvContent.adapter = madapter
+        madapterContent = ContentRecyclerViewAdapter(this)
+        binding.rvContent.adapter = madapterContent
+
 
         var search : String
 
@@ -50,7 +53,7 @@ class HomeScreen : AppCompatActivity(), ItemClicked {
                 } else {
                     search = binding.etSearchBar.text.toString()
                     fetchdata("https://gnews.io/api/v4/search?q=$search&lang=en&country=in&max=10&apikey=$apikey")
-                    binding.tvAction.text = "Searched"
+                    binding.tvAction.text = search
                 }
             }
         })
@@ -74,7 +77,7 @@ class HomeScreen : AppCompatActivity(), ItemClicked {
                     )
                     newsList.add(news)
                 }
-                madapter.updateList(newsList)
+                madapterContent.updateList(newsList)
             }
         ) { error ->
             Log.d("Error", "news not parced : $error")
@@ -89,4 +92,5 @@ class HomeScreen : AppCompatActivity(), ItemClicked {
             .build()
         intent.launchUrl(this@HomeScreen, Uri.parse(news.url))
     }
+
 }
