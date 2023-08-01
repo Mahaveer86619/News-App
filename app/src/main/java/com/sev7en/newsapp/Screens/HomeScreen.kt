@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.browser.customtabs.CustomTabsIntent
@@ -78,6 +79,7 @@ class HomeScreen : AppCompatActivity(), ItemClicked {
                     newsList.add(news)
                 }
                 madapterContent.updateList(newsList)
+                binding.pbLoading.visibility = View.GONE
             }
         ) { error ->
             Log.d("Error", "news not parced : $error")
